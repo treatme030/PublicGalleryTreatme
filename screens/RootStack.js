@@ -6,6 +6,8 @@ import {useUserContext} from '../contexts/UserContext';
 import MainTab from './MainTab';
 import {subscribeAuth} from '../lib/auth';
 import {getUser} from '../lib/users';
+import SplashScreen from 'react-native-splash-screen';
+
 import UploadScreen from './UploadScreen';
 import ModifyScreen from './ModifyScreen';
 import SettingScreen from './SettingScreen';
@@ -22,6 +24,7 @@ const RootStack = () => {
       unsubscribe();
 
       if (!currentUser) {
+        SplashScreen.hide();
         return;
       }
       const profile = await getUser(currentUser.uid);
